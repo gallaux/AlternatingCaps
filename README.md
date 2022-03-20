@@ -6,3 +6,5 @@ Run the app, end hit the "End" key to toggle automated alternating caps [![](htt
 ![alternating_caps_tray](https://user-images.githubusercontent.com/23641830/159140237-03b49095-9cf5-4caa-9e8d-35b448505872.png)
 
 Right-click on the Alternating Caps system tray icon and hit "Exit" to close the app.
+
+Release: [AlternatingCaps.zip](https://github.com/gallaux/AlternatingCaps/files/8312414/AlternatingCaps.zip)
