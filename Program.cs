@@ -9,7 +9,10 @@ namespace AlternatingCaps
         private const int WM_KEYDOWN = 0x0100;
         private static LowLevelKeyboardProc _proc = HookCallback;
         private static IntPtr _hookID = IntPtr.Zero;
+
+        private static bool isAlternating = false;
         private static Keys lastKey = Keys.None;
+        private static bool capsLockState;
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
@@ -30,16 +33,18 @@ namespace AlternatingCaps
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
         /// <summary>
-        /// The main entry point for the application.
+        /// The main entry point for the application
         /// </summary>
         [STAThread]
         static void Main()
         {
+            capsLockState = Control.IsKeyLocked(Keys.CapsLock);
             _hookID = SetHook(_proc);
 
             ApplicationConfiguration.Initialize();
             Application.Run(new MainForm());
 
+            resetCapsLock();
             UnhookWindowsHookEx(_hookID);
         }
 
@@ -70,9 +75,14 @@ namespace AlternatingCaps
                 Keys key = (Keys)Marshal.ReadInt32(lParam);
                 if (key == Keys.End)
                 {
-                    MainForm.SwitchAlternateCaps();
+                    isAlternating = MainForm.SwitchAlternateCaps();
+                    if (!isAlternating) resetCapsLock();
                 }
-                else if (MainForm.isAlternating && key >= Keys.A && key <= Keys.Z)
+                else if (key == Keys.CapsLock)
+                {
+                    capsLockState = !capsLockState;
+                }
+                else if (isAlternating && key >= Keys.A && key <= Keys.Z)
                 {
                     if ((char.IsUpper((char)lastKey) && char.IsUpper((char)key)) ||
                         (char.IsLower((char)lastKey) && char.IsLower((char)key)))
@@ -84,6 +94,17 @@ namespace AlternatingCaps
             }
 
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
+        }
+
+        /// <summary>
+        /// Re-apply previous caps lock state if needed
+        /// </summary>
+        private static void resetCapsLock()
+        {
+            if (Control.IsKeyLocked(Keys.CapsLock) != capsLockState)
+            {
+                ToggleCapsLock();
+            }
         }
     }
 }

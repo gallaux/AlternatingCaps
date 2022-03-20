@@ -1,18 +1,21 @@
-﻿namespace AlternatingCaps
+﻿using System.Resources;
+
+namespace AlternatingCaps
 {
+    /// <summary>
+    /// The main (and only) hidden form
+    /// </summary>
     public partial class MainForm : Form
     {
-        public static bool isAlternating = false;
-
+        private static bool isAlternating = false;
         private static NotifyIcon? trayIcon = null;
         private static ToolStripMenuItem? switchMenuItem = null;
 
-        private static readonly string IconTextOff = "Alternating Caps (Off)";
-        private static readonly string IconTextOn = "aLtErNaTiNg cApS (oN)";
+        private static readonly ResourceManager? resources = new ResourceManager(typeof(MainForm));
 
-        private static readonly string MenuTextOff = "Turn OFF (\"End\" Key)";
-        private static readonly string MenuTextOn = "Turn ON (\"End\" Key)";
-
+        /// <summary>
+        /// Form constructor
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
@@ -21,12 +24,26 @@
             switchMenuItem = this.switchAlternateMenuItem;
         }
 
-        public static void SwitchAlternateCaps()
+        /// <summary>
+        /// Switch the Alternating Caps feature On/Off. Update the tray icon and menu item text accordingly
+        /// </summary>
+        /// <returns>Whether the Alternating Caps feature is On/Off</returns>
+        public static bool SwitchAlternateCaps()
         {
             isAlternating = !isAlternating;
+            string newState = isAlternating ? "On" : "Off";
 
-            if (trayIcon != null) trayIcon.Text = isAlternating ? IconTextOn : IconTextOff;
-            if (switchMenuItem != null) switchMenuItem.Text = isAlternating ? MenuTextOff : MenuTextOn;
+            if (trayIcon != null)
+            {
+                trayIcon.Icon = (Icon)resources.GetObject($"notifyIcon{newState}.Icon");
+                trayIcon.Text = (string)resources.GetObject($"IconText{newState}");
+            }
+            if (switchMenuItem != null)
+            {
+                switchMenuItem.Text = (string)resources.GetObject($"MenuText{newState}");
+            }
+
+            return isAlternating;
         }
 
         private void switchAlternateMenuItem_Click(object sender, EventArgs e)

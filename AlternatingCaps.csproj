@@ -6,11 +6,17 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>alternating_caps.ico</ApplicationIcon>
+    <ApplicationIcon>res\alternating_caps.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="alternating_caps.ico" />
+    <Content Include="res\alternating_caps.ico" />
+    <Content Include="res\alternating_caps_off.ico" />
+    <Content Include="res\alternating_caps_on.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
   </ItemGroup>
 
 </Project>

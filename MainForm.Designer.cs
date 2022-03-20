@@ -40,7 +40,7 @@
             // notifyIcon
             // 
             this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
-            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIconOff.Icon")));
             this.notifyIcon.Text = "Alternating Caps (Off)";
             this.notifyIcon.Visible = true;
             // 
