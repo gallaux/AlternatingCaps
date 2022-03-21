@@ -33,6 +33,7 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.switchAlternateMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notificationsShowMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -40,7 +41,7 @@
             // notifyIcon
             // 
             this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
-            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIconOff.Icon")));
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
             this.notifyIcon.Text = "Alternating Caps (Off)";
             this.notifyIcon.Visible = true;
             // 
@@ -49,16 +50,26 @@
             this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.switchAlternateMenuItem,
+            this.notificationsShowMenuItem,
             this.exitToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(213, 52);
+            this.contextMenuStrip.Size = new System.Drawing.Size(213, 76);
             // 
             // switchAlternateMenuItem
             // 
+            this.switchAlternateMenuItem.CheckOnClick = true;
             this.switchAlternateMenuItem.Name = "switchAlternateMenuItem";
             this.switchAlternateMenuItem.Size = new System.Drawing.Size(212, 24);
             this.switchAlternateMenuItem.Text = "Turn ON (\"End\" Key)";
             this.switchAlternateMenuItem.Click += new System.EventHandler(this.switchAlternateMenuItem_Click);
+            // 
+            // notificationsShowMenuItem
+            // 
+            this.notificationsShowMenuItem.CheckOnClick = true;
+            this.notificationsShowMenuItem.Name = "notificationsShowMenuItem";
+            this.notificationsShowMenuItem.Size = new System.Drawing.Size(212, 24);
+            this.notificationsShowMenuItem.Text = "Show notifications?";
+            this.notificationsShowMenuItem.Click += new System.EventHandler(this.notificationsShowMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -87,5 +98,6 @@
         private ContextMenuStrip contextMenuStrip;
         private ToolStripMenuItem exitToolStripMenuItem;
         private ToolStripMenuItem switchAlternateMenuItem;
+        private ToolStripMenuItem notificationsShowMenuItem;
     }
 }

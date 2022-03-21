@@ -73,7 +73,9 @@ namespace AlternatingCaps
             if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
             {
                 Keys key = (Keys)Marshal.ReadInt32(lParam);
-                if (key == Keys.End)
+
+                // int 35 = 0x23 = End key
+                if (key == (Keys)Properties.Settings.Default.SwitcherKey)
                 {
                     isAlternating = MainForm.SwitchAlternateCaps();
                     if (!isAlternating) resetCapsLock();
