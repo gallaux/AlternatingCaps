@@ -33,7 +33,10 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.switchAlternateMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notificationsShowMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notificationsPositionToolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -50,10 +53,11 @@
             this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.switchAlternateMenuItem,
-            this.notificationsShowMenuItem,
+            this.settingsToolStripMenuItem,
+            this.toolStripSeparator,
             this.exitToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(213, 76);
+            this.contextMenuStrip.Size = new System.Drawing.Size(213, 134);
             // 
             // switchAlternateMenuItem
             // 
@@ -63,13 +67,39 @@
             this.switchAlternateMenuItem.Text = "Turn ON (\"End\" Key)";
             this.switchAlternateMenuItem.Click += new System.EventHandler(this.switchAlternateMenuItem_Click);
             // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.notificationsShowMenuItem,
+            this.notificationsPositionToolStripComboBox});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(212, 24);
+            this.settingsToolStripMenuItem.Text = "Settings...";
+            // 
             // notificationsShowMenuItem
             // 
             this.notificationsShowMenuItem.CheckOnClick = true;
             this.notificationsShowMenuItem.Name = "notificationsShowMenuItem";
-            this.notificationsShowMenuItem.Size = new System.Drawing.Size(212, 24);
+            this.notificationsShowMenuItem.Size = new System.Drawing.Size(224, 26);
             this.notificationsShowMenuItem.Text = "Show notifications?";
             this.notificationsShowMenuItem.Click += new System.EventHandler(this.notificationsShowMenuItem_Click);
+            // 
+            // notificationsPositionToolStripComboBox
+            // 
+            this.notificationsPositionToolStripComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.notificationsPositionToolStripComboBox.Items.AddRange(new object[] {
+            "Left",
+            "Center",
+            "Right"});
+            this.notificationsPositionToolStripComboBox.MaxDropDownItems = 3;
+            this.notificationsPositionToolStripComboBox.Name = "notificationsPositionToolStripComboBox";
+            this.notificationsPositionToolStripComboBox.Size = new System.Drawing.Size(134, 28);
+            this.notificationsPositionToolStripComboBox.SelectedIndexChanged += new System.EventHandler(this.notificationsPositionToolStripComboBox_SelectedIndexChanged);
+            // 
+            // toolStripSeparator
+            // 
+            this.toolStripSeparator.Name = "toolStripSeparator";
+            this.toolStripSeparator.Size = new System.Drawing.Size(209, 6);
             // 
             // exitToolStripMenuItem
             // 
@@ -82,7 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(240, 0);
+            this.ClientSize = new System.Drawing.Size(240, 121);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MainForm";
             this.Text = "Alternating Caps (Off)";
@@ -98,6 +128,9 @@
         private ContextMenuStrip contextMenuStrip;
         private ToolStripMenuItem exitToolStripMenuItem;
         private ToolStripMenuItem switchAlternateMenuItem;
+        private ToolStripSeparator toolStripSeparator;
+        private ToolStripMenuItem settingsToolStripMenuItem;
         private ToolStripMenuItem notificationsShowMenuItem;
+        private ToolStripComboBox notificationsPositionToolStripComboBox;
     }
 }

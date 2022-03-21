@@ -19,7 +19,9 @@
 
             trayIcon = this.notifyIcon;
             switchMenuItem = this.switchAlternateMenuItem;
+
             notificationsShowMenuItem.Checked = Properties.Settings.Default.ShowNotifications;
+            notificationsPositionToolStripComboBox.SelectedIndex = Properties.Settings.Default.NotificationsHorizontalPosition;
         }
 
         /// <summary>
@@ -51,7 +53,7 @@
             if (notificationForm != null) notificationForm.Close();
 
             notificationForm = new NotificationForm(isAlternating);
-            notificationForm.ShowNotification();
+            notificationForm.ShowNotification((FormHorizontalPosition)Properties.Settings.Default.NotificationsHorizontalPosition);
         }
 
         private void switchAlternateMenuItem_Click(object sender, EventArgs e)
@@ -62,6 +64,12 @@
         private void notificationsShowMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.ShowNotifications = notificationsShowMenuItem.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void notificationsPositionToolStripComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.NotificationsHorizontalPosition = notificationsPositionToolStripComboBox.SelectedIndex;
             Properties.Settings.Default.Save();
         }
 
