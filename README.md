@@ -12,4 +12,4 @@ Notifications (can be turned on/off):
 
 Right-click on the Alternating Caps system tray icon and hit "Exit" to close the app.
 
-Release: [AlternatingCaps.zip](https://github.com/gallaux/AlternatingCaps/files/8318369/AlternatingCaps.zip)
+Release: [AlternatingCaps.zip](https://github.com/gallaux/AlternatingCaps/files/8319204/AlternatingCaps.zip)
