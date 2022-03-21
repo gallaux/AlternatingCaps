@@ -7,4 +7,4 @@ Run the app, end hit the "End" key to toggle automated alternating caps [![](htt
 
 Right-click on the Alternating Caps system tray icon and hit "Exit" to close the app.
 
-Release: [AlternatingCaps.zip](https://github.com/gallaux/AlternatingCaps/files/8312414/AlternatingCaps.zip)
+Release: [AlternatingCaps.zip](https://github.com/gallaux/AlternatingCaps/files/8318112/AlternatingCaps.zip)
