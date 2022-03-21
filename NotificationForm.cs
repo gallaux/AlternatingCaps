@@ -22,18 +22,6 @@ namespace AlternatingCaps
             timer.Enabled = true;
         }
 
-        /// <summary>
-        /// Show the notification in the lower right corner of the screen
-        /// </summary>
-        protected override void OnLoad(EventArgs e)
-        {
-            var screen = Screen.FromPoint(this.Location);
-            this.Location = new Point(screen.WorkingArea.Right - this.Width, screen.WorkingArea.Bottom - this.Height);
-            this.BringToFront();
-
-            base.OnLoad(e);
-        }
-
         private void updateStatus(bool isAlternating)
         {
             if (isAlternating)

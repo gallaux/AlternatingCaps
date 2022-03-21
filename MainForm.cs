@@ -8,6 +8,7 @@
         private static bool isAlternating = false;
         private static NotifyIcon? trayIcon = null;
         private static ToolStripMenuItem? switchMenuItem = null;
+        private static NotificationForm? notificationForm = null;
 
         /// <summary>
         /// Main form constructor
@@ -47,11 +48,10 @@
 
         private static void showNotification()
         {
-            var notification = Application.OpenForms.OfType<NotificationForm>();
-            if (notification.Any()) notification.First().Close();
+            if (notificationForm != null) notificationForm.Close();
 
-            NotificationForm notificationForm = new NotificationForm(isAlternating);
-            notificationForm.Show();
+            notificationForm = new NotificationForm(isAlternating);
+            notificationForm.ShowNotification();
         }
 
         private void switchAlternateMenuItem_Click(object sender, EventArgs e)
