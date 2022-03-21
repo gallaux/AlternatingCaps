@@ -29,6 +29,8 @@ namespace AlternatingCaps
         {
             var screen = Screen.FromPoint(this.Location);
             this.Location = new Point(screen.WorkingArea.Right - this.Width, screen.WorkingArea.Bottom - this.Height);
+            this.BringToFront();
+
             base.OnLoad(e);
         }
 
