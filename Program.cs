@@ -5,6 +5,8 @@ namespace AlternatingCaps
 {
     internal static class Program
     {
+        #region Declarations and Imports
+
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
         private static LowLevelKeyboardProc _proc = HookCallback;
@@ -13,6 +15,8 @@ namespace AlternatingCaps
         private static bool isAlternating = false;
         private static Keys lastKey = Keys.None;
         private static bool capsLockState;
+
+        private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
@@ -30,7 +34,7 @@ namespace AlternatingCaps
         [DllImport("user32.dll")]
         static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
 
-        private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+        #endregion
 
         /// <summary>
         /// The main entry point for the application
@@ -38,6 +42,8 @@ namespace AlternatingCaps
         [STAThread]
         static void Main()
         {
+            if (isAppInstanceRunning()) return;
+
             capsLockState = Control.IsKeyLocked(Keys.CapsLock);
             _hookID = SetHook(_proc);
 
@@ -107,6 +113,22 @@ namespace AlternatingCaps
             {
                 ToggleCapsLock();
             }
+        }
+
+        /// <summary>
+        /// Checking for an existing instance of the application
+        /// </summary>
+        private static bool isAppInstanceRunning()
+        {
+            bool appNewInstance;
+            Mutex m = new Mutex(true, Process.GetCurrentProcess().ProcessName, out appNewInstance);
+
+            if (appNewInstance)
+            {
+                GC.KeepAlive(m);
+            }
+            
+            return !appNewInstance; 
         }
     }
 }
