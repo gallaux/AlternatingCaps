@@ -57,7 +57,7 @@
             this.toolStripSeparator,
             this.exitToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(213, 134);
+            this.contextMenuStrip.Size = new System.Drawing.Size(213, 110);
             // 
             // switchAlternateMenuItem
             // 
@@ -119,7 +119,6 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         #endregion
